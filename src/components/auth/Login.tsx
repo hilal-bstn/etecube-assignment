@@ -23,6 +23,7 @@ import NotificationService from "../../services/notificationService";
         })
         
         const handleLogin = async() => {
+            try{
             let userService = new UserService();
             let userModel : LoginModel = {
                 email: email,
@@ -41,6 +42,10 @@ import NotificationService from "../../services/notificationService";
             else{
                 NotificationService.openErrorNotification({description:"Email or password is incorrect!",placement:"bottomRight",title:""});
             }
+        }
+        catch (error) {
+            NotificationService.openErrorNotification({description:"Something went wrong, please try again later!",placement:"bottomRight",title:""});  
+          }
         };
   
     return (

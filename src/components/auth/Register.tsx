@@ -22,7 +22,7 @@ const Register : React.FC = () => {
       })  
 
       const collectData = async ()=>{ 
-
+        try{
          let userService = new UserService();
             let registerModel : RegisterModel = {
                 email:email,
@@ -46,7 +46,10 @@ const Register : React.FC = () => {
     }
         else{
             NotificationService.openErrorNotification({description:"Please enter connect details.",placement:"bottomRight",title:"Form Invalid!"});
-        }
+        }}
+        catch (error) {
+            NotificationService.openErrorNotification({description:"Something went wrong, please try again later!",placement:"bottomRight",title:""});  
+          }
     }
 
       return (
